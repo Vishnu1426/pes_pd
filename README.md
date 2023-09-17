@@ -78,19 +78,35 @@
 <summary>Chip Floor planning considerations</summary><blockquote>
 
 <details>
-<summary>Introduction to all components of open-source digital asic design</summary>
+<summary>Utilization factor and aspect ratio</summary>
 </details>
 
 <details>
-<summary>Simplified RTL2GDS flow</summary>
+<summary>Concept of pre-placed cells</summary>
 </details>
 
 <details>
-<summary>Introduction to OpenLANE and Strive chipsets</summary>
+<summary>De-coupling capacitors</summary>
 </details>
 
 <details>
-<summary>Introduction to OpenLANE detailed ASIC design flow</summary>
+<summary>Power planning</summary>
+</details>
+
+<details>
+<summary>Pin placement and logical cell placement blockage</summary>
+</details>
+
+<details>
+<summary>Steps to run floorplan using OpenLANE</summary>
+</details>
+
+<details>
+<summary>Review floorplan files and steps to view floorplan</summary>
+</details>
+
+<details>
+<summary> Review floorplan layout in Magic</summary>
 </details>
 
 </blockquote>
