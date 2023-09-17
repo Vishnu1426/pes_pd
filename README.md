@@ -112,3 +112,67 @@
 </blockquote>
 </details>
 
+
+<details>
+<summary>Library Binding and Placement</summary><blockquote>
+
+<details>
+<summary>Netlist binding and initial place design</summary>
+</details>
+
+<details>
+<summary>Optimize placement using estimated wire-length and capacitance </summary>
+</details>
+
+<details>
+<summary>Final placement optimization</summary>
+</details>
+
+<details>
+<summary>Need for libraries and characterization</summary>
+</details>
+
+<details>
+<summary>Congestion aware placement using RePlAce</summary>
+</details>
+
+</blockquote>
+</details>
+
+
+<details>
+<summary>Cell design and characterization flows</summary><blockquote>
+
+<details>
+<summary>Inputs for cell design flow</summary>
+</details>
+
+<details>
+<summary>Circuit design step</summary>
+</details>
+
+<details>
+<summary>Layout design step</summary>
+</details>
+
+<details>
+<summary>Typical characterization flow</summary>
+</details>
+
+</blockquote>
+</details>
+
+
+<details>
+<summary>General timing characterization parameters</summary><blockquote>
+
+<details>
+<summary>Timing threshold definitions</summary>
+</details>
+
+<details>
+<summary>Propagation delay and transition time</summary>
+</details>
+
+</blockquote>
+</details>
