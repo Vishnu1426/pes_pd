@@ -187,6 +187,15 @@ https://www.youtube.com/watch?v=Vhyv0eq_mLU&pp=ygUOZm9zc2kgZGlhbCB1cCA%3D
 <details>
 <summary>Steps to characterize synthesis results</summary>
 
++ STA and ABC run has been done already.
++ Let us see the flop ratio. Flop ratio is defined as
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/33fda301-4d95-48e3-ab07-2e8b6f0910b1)
+
++ From the statistics report, we can see that the number of DFFs is 1613 and the total number of cells is 14876.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9d81e55c-ea8c-4d18-94d2-a223cd5d2942)
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/680f0215-08e3-42a4-8387-38168b425f9b)
 
 </details>
 
