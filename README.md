@@ -53,6 +53,41 @@
 ```
 cd work/tools
 ls -ltr
+cd openlane_working_dir/
+cd openlane_working_dir/
+ls -ltr
+cd pdks/
+ls -ltr
+cd sky130A/
+ls -ltr
+cd libs.ref/
+ls -ltr
+cd ..
+cd libs.tech/
+ls -ltr
+```
++ The library we will be working with is SkyWater130A, which has recently become open source.
++ libs.ref contains the timing details etc.
++ libs.tech contains the specific to the tool.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ce8d5c45-8ee9-4c7c-9b73-10432a7caafa)
+
++ We will be working on sky130_fd_sc_hd. 'fd' is an abbreviation of foundry.
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/69f99c3b-9ba7-4378-8a0b-995077bea6e4)
+
+```
+cd..
+cd libs.ref
+cd sky130_fd_sc_hd
+cd lib
+ls -ltr
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/836debc1-e115-4f17-9a52-9a888865639d)
+
++ This is the directory we will be working in.
+```
+~/Desktop/work/tools/openlane_working_dir/openlane$
+```
 
 </details>
 
