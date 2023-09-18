@@ -176,3 +176,101 @@
 
 </blockquote>
 </details>
+
+
+## Day 3 - Design library cell using Magic Layout and ngspice characterization
+
+<details>
+<summary>Labs for CMOS inverter ngspice simulations</summary><blockquote>
+
+<details>
+<summary>IO placer revision</summary>
+</details>
+
+<details>
+<summary>SPICE deck creation for CMOS inverter</summary>
+</details>
+
+<details>
+<summary>SPICE simulation lab for CMOS inverter</summary>
+</details>
+
+<details>
+<summary>Switching Threshold Vm</summary>
+</details>
+
+<details>
+<summary>Static and dynamic simulation of CMOS inverter</summary>
+</details>
+
+<details>
+<summary>Lab steps to git clone vsdstdcelldesign</summary>
+</details>
+
+</blockquote>
+</details>
+
+
+<details>
+<summary>Inception of Layout Â CMOS fabrication process</summary><blockquote>
+
+<details>
+<summary>Create Active regions</summary>
+</details>
+
+<details>
+<summary>Optimize placement using estimated wire-length and capacitance </summary>
+</details>
+
+<details>
+<summary>Final placement optimization</summary>
+</details>
+
+<details>
+<summary>Need for libraries and characterization</summary>
+</details>
+
+<details>
+<summary>Congestion aware placement using RePlAce</summary>
+</details>
+
+</blockquote>
+</details>
+
+
+<details>
+<summary>Cell design and characterization flows</summary><blockquote>
+
+<details>
+<summary>Inputs for cell design flow</summary>
+</details>
+
+<details>
+<summary>Circuit design step</summary>
+</details>
+
+<details>
+<summary>Layout design step</summary>
+</details>
+
+<details>
+<summary>Typical characterization flow</summary>
+</details>
+
+</blockquote>
+</details>
+
+
+<details>
+<summary>General timing characterization parameters</summary><blockquote>
+
+<details>
+<summary>Timing threshold definitions</summary>
+</details>
+
+<details>
+<summary>Propagation delay and transition time</summary>
+</details>
+
+</blockquote>
+</details>
