@@ -261,11 +261,27 @@ less 2-opensta.timing.rpt
 <details>
 <summary>De-coupling capacitors</summary>
 
-
++ The location of pre-placed cells have to be very well defined.
++ The pre-placed cells have to be surrounded by decoupling capacitors.
++ The wire which connects Vdd and the gates has a resistance which and due to that the voltage drops below noise margin, then logic 1 won't be detected or rather whether it can be detected or not cannot be guaranteed.
++ One way to solve this problem is to surround a piece of circuit with a huge capacitor. This capacitor decouples the circuit from the main supply. Whenever there is a switching activity hapeneing, the capacitor will send the current to the circuit.
++ Since the decoupling capacitors are placed very near to the circuitry, there is hardly an voltage drop.
++ So the blocks will function properly since the supply is provided by the decoupling capacitors. 
 </details>
 
 <details>
 <summary>Power planning</summary>
+
++ Assume the previous circuit which was decoupled with capaciors has been replicated multiple times in the circuit.
++ Now assume there is a 16 bit line which connects these replicated blocks from Vdd line and that there is a connection between two of these replicated blocks. Now 16 bit line means there are 16 capacitors and if it charged, it is logic 1 and if it is discharged, it is logic 0.
++ If all the logic 1s are set to go to logic 0, then the all of them have to get discharged to the ground.
++ Since there is a single ground line and all of them go to logic 0 together, the ground which was supposed to be at logic 0 get's a voltage spike. This is called ground bounce.
++ If the voltage level of this ground bounce goes beyond the noise margin, we will get an undefined state.
++ If suppose the reverse process had to happen where all the capacitors had to charge to logic 1, then all of them demand voltage from the Vdd.
++ Again since there is a single Vdd line, there will be a voltage droop. As long as thie droop is within the noise margin, nothing will happen. Once it goes beyond the noise margin, it is said to be in an undefined region and the circuit can interpret the voltage as logic 0 or logic 1 and it is not in our control.
++ If there were multiple power supplies and multiple ground lines, this problem would not have occurred.
++ That is what do. We put multiple ground lines and multiple vdd lines like a mesh and inside the boundaries the cells sit and the Vdd and gnd lines themselves make the mesh boundary. 
++ A cell will take power from it's nearest source and dump it's power in its nearest gnd.
 </details>
 
 <details>
