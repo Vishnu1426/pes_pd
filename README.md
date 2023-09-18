@@ -474,15 +474,33 @@ vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/openlane/designs/p
 + Circuit Design has two parts:
   1. Implement the function itself
   2. Model the CMOS in order to meet the library requirements.
-  3. 
+  3. The output that we get from this is called the CDL(Circuit Description Language)
 </details>
 
 <details>
 <summary>Layout design step</summary>
+
++ Next step we need to do Euler's path - path which has been traced only once.
++ After getting the Euler's path, we should draw the stick diagram which has all the connections.
++ Next step is to convert the stick diagram into Layout according to the DRC and user defined specs.
++ Now we use a tool to see the layout. Then we extract the parasitics out of the layout and characterize it in terms of timing data.
++ The output of the layout is GDSII, LEF (defines width and height of the cell), extracted spice netlist(.cir) which gives the resistance and capacitance of each and every element.
 </details>
 
 <details>
 <summary>Typical characterization flow</summary>
+
++ First step is to read in the model which is given by the foundry.
++ Second step is to read the extracted spice netlist.
++ Third step is to recognize the bahaviour of the buffer.
++ Fourth step is to read the sub-circuit of the inverter
++ Fifth is to attach necessary power sources.
++ Sixth is to apply the right stimulus.
++ Seventh is to provide the necessary output capacitances.
++ Eighth step is to provide the necassary simulation commands., like transient, DC, AC etc.
++ Next is to feed all the above steps as a configuration file to a characterziation software called GUNA.
++ GUNA will generate timing, noise and power.libs
++ There are three characterziations types - Timing characterization, Power characterization, Noise characterization.
 </details>
 
 </blockquote>
@@ -494,10 +512,36 @@ vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/openlane/designs/p
 
 <details>
 <summary>Timing threshold definitions</summary>
+
++ slew_low_rise_thr - Slope of lower part of rising signal, usually 20%.
++ slew_high_rise_thr - Slope of higher part of rising signal, usually 20%.
++ slew_low_fall_thr - Slope of lower part of falling signal, usually 20%.
++ slew_high_fall_thr - Slope of lower part of falling signal, usually 20%.
++ in_rise_thr - Input rising signal threshold, around 50% of the signal.
++ in_fall_thr - Input falling signal threshold, around 50% of the signal.
++ out_rise_thr - Output rising signal threshold, around 50% of the signal.
++ out_fall_thr - Output falling signal threshold, around 50% of the signal.
++ To calculate the delay between signals subtract the output-input values from the above four parameters.
 </details>
 
 <details>
 <summary>Propagation delay and transition time</summary>
+
++ Poor choice of threshold points will result in negative propagation delays.
++ Large length of wire between cells will result in large slew which will give negative propagation delay even at 50% level.
+```
+Propagation  Delay: time(out_*_thr)-time(in_*_thr)
+```
++ Transition time is the time taken by a signal to transition from logic 0 to logic 1.
++ For rising signal:
+```
+Transition time = time(slew_high_rise_thr) - time(slew_low_rise_thr)
+```
++ For falling signal
+```
+Transition time = time(slew_high_fall_thr) - time(slew_low_fall_thr)
+```
++ Two more important timing parameters are output current waveform and output voltage waveform.
 </details>
 
 </blockquote>
