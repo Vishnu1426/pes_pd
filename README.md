@@ -402,11 +402,20 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 <details>
 <summary>Final placement optimization</summary>
 
-+ 
++ Connections between cells also have to be optimized.
++ Buffers should be added at the right places.
++ After this do setup timaing analysis with ideal clocks.
 </details>
 
 <details>
 <summary>Need for libraries and characterization</summary>
+
++ First step in IC design flow is logic synthesis - converting design to legal hardware. Gates repreesnt the RTL logic.
++ Next step is the floor planning. We take the circuit from the synthesis and decide the shapes and sizes of the gates which will in turn determine the dimensions of the core and die.
++ Next step is to do placement. We do placement in way that the initial timing conditions are met.
++ Next step is the clock tree synthesis. This step is to make sure that all the cells dependent on clock receive the clock signal at exactly the same time.
++ Next step is routing
++ 
 </details>
 
 <details>
