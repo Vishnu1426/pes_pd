@@ -1,4 +1,4 @@
-![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/5cc66671-a0fe-424c-a1fc-94b90f3505b4)# ADVANCED PHYSICAL DESIGN USING OPENLANESKY130
+# ADVANCED PHYSICAL DESIGN USING OPENLANESKY130
 
 ## Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
 
