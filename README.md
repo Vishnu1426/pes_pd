@@ -450,11 +450,21 @@ vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/openlane/designs/p
 <details>
 <summary>Inputs for cell design flow</summary>
 
++ Cell design flow consists of three parts
+1. Inputs
+2. Design steps
+3. Outputs
 
++ Let us look at Inputs
+- Inputs contain PDKs, DRC and LVS rules, SPICE models, library and usr-defined specs.
+- It has tech files which tell about labmda based rules.
+- SPICE model contains physical parameters like Vth, gamma, capacitance etc. These are given by the foundry.
+- User defined specs are things like cell height which is dependent on the power and ground lines which can be set by the user. Cell width is dependent on the timing data which can again be chosen by the user. Metal layers are also user defined specs. Pin locations are also user defined. Drawn gate length also can be set by user. User is library developer.
 </details>
 
 <details>
 <summary>Circuit design step</summary>
+
 </details>
 
 <details>
