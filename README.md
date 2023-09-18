@@ -96,6 +96,7 @@ ls -ltr
 + To invoke openlane, use the following commands.
 ```
 docker
+pwd
 ./flow.tcl -interactive
 package require openlane 0.9
 ```
