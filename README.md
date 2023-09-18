@@ -88,11 +88,40 @@ ls -ltr
 ```
 ~/Desktop/work/tools/openlane_working_dir/openlane$
 ```
-
 </details>
 
 <details>
 <summary>Design Preparation Step</summary>
+
++ To invoke openlane, use the following commands.
+```
+docker
+./flow.tcl -interactive
+package require openlane 0.9
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/fbd785eb-7b39-4c98-8194-2135095d2e7f)
+
++ How the config.tcl looks like. ls -ltr
+```
+cd designs
+cd picorv32a/
+ls -ltr
+cd src
+ls - ltr
+cd ..
+less config.tcl
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/d8d831f4-61cf-4a0f-a8a2-2095f46bfd59)
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ddf5f7da-7eca-4061-9e84-1ab565419c69)
+
++ Design preparation code
+
+```
+prep -design picorv32a
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6c79c9f9-52db-4f79-8055-eaaec67ca868)
+
 </details>
 
 <details>
