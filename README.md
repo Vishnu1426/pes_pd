@@ -239,7 +239,7 @@ less 2-opensta.timing.rpt
 
 + Utilization Fator is given by:
 
-![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/511ef280-4998-487b-9624-9f2c401a9a72)
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b97d52a8-5e42-45f1-b760-bbfad0330787)
 
 + If the utilization is 100%, then if we want to add any more cells, we cannot. Therefore, usually 50-60% is done to keep some space in case we want to add more cells in the future, for eg: buffers for optimization.
 
@@ -252,10 +252,16 @@ less 2-opensta.timing.rpt
 
 <details>
 <summary>Concept of pre-placed cells</summary>
+
++ Say there is a combinational logic with huge circuit. If parts of the logic are being used multiple times in different places, then we can cut the logic into few parts, arrange them into blocks and black box them. That block need not be implemented in every place where it needs to be used. It can be implemented in a few places and can be reused whenever needed. This is the concept of reusability of cells.
++ The arrangement of these IPs/macros in a chip is called Floorplanning.
++ These IPs/blocks have user defined locations, and hence are placed in chip before automated placement-and-routing and are called pre-placed cells. Eg. Memory, clock gating cell, comparator, Mux. These automated processes do not touch these preplaced cells.
 </details>
 
 <details>
 <summary>De-coupling capacitors</summary>
+
+
 </details>
 
 <details>
