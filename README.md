@@ -391,11 +391,18 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 <details>
 <summary>Optimize placement using estimated wire-length and capacitance </summary>
 
-
++ Cells have to also be placed keeping in mind the other cells which have to be placed.
++ Even then some extra distance signals will have to cover to reach the output from cells or from input to cells.
++ To solve this problem, we do optimized placement.
++ This is the stage where we estimate wire length and capacitance and based on that insert repeaters.
++ Repeaters are basically those components which recreate and reconfigure the signals which are input to them and send them to the output, eg. buffers.
++ These repeaters maintain signal integrity.
 </details>
 
 <details>
 <summary>Final placement optimization</summary>
+
++ 
 </details>
 
 <details>
