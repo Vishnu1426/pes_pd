@@ -197,11 +197,36 @@ https://www.youtube.com/watch?v=Vhyv0eq_mLU&pp=ygUOZm9zc2kgZGlhbCB1cCA%3D
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9d81e55c-ea8c-4d18-94d2-a223cd5d2942)
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/680f0215-08e3-42a4-8387-38168b425f9b)
 
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/e6e5fa7b-5a11-428f-afe9-e01bf6d359b6)
+
++ Let us check what is there in the runs folder.
++ First the synthesis in results folder.
+
+```
+cd reuslts
+cd synthesis
+less picorv32a.synthesis.v 
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/8d5ab0fb-a14b-42bf-b31e-0ce31b3ab345)
+
++ Next let's check the synthesis in reports folder. We will get the statistics that was displayed earlier.
+```
+cd reuslts
+cd synthesis
+less picorv32a.synthesis.v 
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/533dadb5-716b-41e9-8cc4-7398c0e3df50)
+
++ Similarly we can also check the opensta report.
+```
+less 2-opensta.timing.rpt 
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/86d1fa4e-5754-4b4c-a2cf-138f4d185f0a)
+
 </details>
 
 </blockquote>
 </details>
-
 
 
 ## Day 2 - Good floorplan vs bad floorplan and introduction to library cells
