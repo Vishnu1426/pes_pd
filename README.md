@@ -126,10 +126,55 @@ prep -design picorv32a
 
 <details>
 <summary>Review files after design prep and run synthesis</summary>
+
+```
+cd runs
+ls -ltr
+cd 18-09_06-22/
+cd tmp
+ls -ltr
+less merged.lef
+```
++ The "runs" directory will be created in the picorv32a directory.
++ In that "runs" folder, a directory with today's date will be created which is Sept 18th.
++ In the sept 18th folder, we can see the merged.lef
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9d0e16b2-b459-4d64-a32d-6ccf904159a0)
+  
++ This contains all the wire level information, vias and below that is the cell level information.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/8008d146-b6d8-4766-a219-f85aaf38da14)
+
++  The results and reports directories will have sub-folders which will be empty as of now since nothing has been run.
+
++ The config.tcl basically shows what are all the default parameters the run file takes.
 </details>
+
+```
+less config.tcl
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6f1382a6-76ff-4d7d-a8a1-9b15c47bbc97)
+
++ The cmds.log file logs all the commannds that the user has typed.
+```
+less cmds.log
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/472fa1cb-ee0b-4189-a0e3-caa5dfed1d33)
+
++ Type the follwing command the synthesis will be run along with ABC.
+```
+run_synthesis
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/5daa544e-d396-4754-a4bb-bdc2562010b5)
 
 <details>
 <summary>OpenLANE Project Git Link Description</summary>
+
++ The github link to find all the information about openlane is in
+```
+github.com/efabless/openlane
+```
+
 </details>
 
 <details>
