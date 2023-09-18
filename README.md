@@ -1,4 +1,4 @@
-# ADVANCED PHYSICAL DESIGN USING OPENLANESKY130
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/5cc66671-a0fe-424c-a1fc-94b90f3505b4)# ADVANCED PHYSICAL DESIGN USING OPENLANESKY130
 
 ## Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
 
@@ -297,14 +297,78 @@ less 2-opensta.timing.rpt
 
 <details>
 <summary>Steps to run floorplan using OpenLANE</summary>
+
++ The defaults for various parts of the flow is in the configurations folder.
++ The heirarchy of selecting default values are as follows:
+``` 
+floorplan.tcl - in configurations directory
+conifg.tcl - in picorv32a directory
+sky130A_sky130_fd_sc_hd_config.tcl - in picorv32a directory
+```
++ The following is a snap of what is there in the configuration directory.
+```
+vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/openlane/configuration$ less README.md 
+vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/openlane/configuration$ less floorplan.tcl 
+
+```
++ Synthesis - defaults
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/544c1373-8da9-4919-9026-4a1046b84dde)
+
++ Floorplanning - defaults
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/f7cfff6c-a4c3-486b-825d-e5e9b6d53bdc)
+
++ Placement - defaults
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a3ee7653-87c9-4661-91f2-e8f3ddf498d4)
+
++ Running Floor plan
+```
+run_floorplan
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/86034942-d2ec-44e5-80d8-8afffa033217)
+
 </details>
 
 <details>
 <summary>Review floorplan files and steps to view floorplan</summary>
+
++ Checking the runs directory:
+```
+vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs$ cd 18-09_06-22/
+cd results/floorplan
+less picorv32a.floorplan.def
+```
++ There will be one .def (design exchange format) file in the floorplan directory.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b04cb7a8-ec0a-4f7f-8d4e-95d961994419)
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/764a69f7-f664-45ea-9c73-6d7d9b8194ca)
+
++ Die Area is
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/402ecdd3-de5a-4757-91b3-1571e28ee60e)
+
++ Now opening magic to view the floorplan
+
+```
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b06c9c99-7af5-4ffc-97ae-ac08afb4e87f)
+
 </details>
 
 <details>
 <summary> Review floorplan layout in Magic</summary>
+
++ We can see that the pin placement is equidistant.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7539ad18-9785-4114-bfe4-9e4edccbb6a2)
+
++ The selected pin in the above snap is in metal layer 3
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/aa69b1f7-70e2-4adc-95e2-07ebe9914adb)
+
 </details>
 
 </blockquote>
@@ -316,10 +380,17 @@ less 2-opensta.timing.rpt
 
 <details>
 <summary>Netlist binding and initial place design</summary>
+
++ The library file contains all the information about the size,shape, delay, I/O conditions etc. information about the cells.
++ It also contains different variations of the same cells. Eg. different shapes and size, different speeds etc.
++ Once we have all the shapes and sizes, it is time to place the netlist on the floorplan.
++ Placements are done such that the there is not much delay between input and output and also the flip flops.
 </details>
 
 <details>
 <summary>Optimize placement using estimated wire-length and capacitance </summary>
+
+
 </details>
 
 <details>
