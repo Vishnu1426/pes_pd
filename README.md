@@ -148,7 +148,7 @@ less merged.lef
 +  The results and reports directories will have sub-folders which will be empty as of now since nothing has been run.
 
 + The config.tcl basically shows what are all the default parameters the run file takes.
-</details>
+
 
 ```
 less config.tcl
@@ -166,6 +166,7 @@ less cmds.log
 run_synthesis
 ```
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/5daa544e-d396-4754-a4bb-bdc2562010b5)
+</details>
 
 <details>
 <summary>OpenLANE Project Git Link Description</summary>
@@ -174,11 +175,19 @@ run_synthesis
 ```
 github.com/efabless/openlane
 ```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/79f76ba1-66c5-4585-952c-fbad78d53377)
 
++ The follwing two youtube videos are also helpful in learning openlane using skywater130 pdk.
+```
+https://www.youtube.com/watch?v=EczW2IWdnOM&pp=ygUOZm9zc2kgZGlhbCB1cCA%3D
+https://www.youtube.com/watch?v=Vhyv0eq_mLU&pp=ygUOZm9zc2kgZGlhbCB1cCA%3D
+```
 </details>
 
 <details>
 <summary>Steps to characterize synthesis results</summary>
+
+
 </details>
 
 </blockquote>
