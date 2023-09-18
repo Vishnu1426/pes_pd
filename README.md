@@ -238,6 +238,18 @@ less 2-opensta.timing.rpt
 <summary>Utilization factor and aspect ratio</summary>
 </details>
 
++ Utilization Fator is given by:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/511ef280-4998-487b-9624-9f2c401a9a72)
+
++ If the utilization is 100%, then if we want to add any more cells, we cannot. Therefore, usually 50-60% is done to keep some space in case we want to add more cells in the future, for eg: buffers for optimization.
+
++ Apect Ratio is given by:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9838c39f-79fb-4a75-bad1-996109745105)
+
++ Whenever aspect ratio is 1, it means that the chip is a square. If it is anything other than 1, then it means that the chip is a rectangle.
+
 <details>
 <summary>Concept of pre-placed cells</summary>
 </details>
