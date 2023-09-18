@@ -49,6 +49,11 @@
 
 <details>
 <summary>OpenLANE Directory structure in detail</summary>
+
+```
+cd work/tools
+ls -ltr
+
 </details>
 
 <details>
