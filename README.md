@@ -236,7 +236,6 @@ less 2-opensta.timing.rpt
 
 <details>
 <summary>Utilization factor and aspect ratio</summary>
-</details>
 
 + Utilization Fator is given by:
 
@@ -249,6 +248,7 @@ less 2-opensta.timing.rpt
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9838c39f-79fb-4a75-bad1-996109745105)
 
 + Whenever aspect ratio is 1, it means that the chip is a square. If it is anything other than 1, then it means that the chip is a rectangle.
+</details>
 
 <details>
 <summary>Concept of pre-placed cells</summary>
