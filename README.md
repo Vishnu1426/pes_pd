@@ -414,12 +414,29 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 + Next step is the floor planning. We take the circuit from the synthesis and decide the shapes and sizes of the gates which will in turn determine the dimensions of the core and die.
 + Next step is to do placement. We do placement in way that the initial timing conditions are met.
 + Next step is the clock tree synthesis. This step is to make sure that all the cells dependent on clock receive the clock signal at exactly the same time.
-+ Next step is routing
-+ 
++ Next step is routing. 
++ Next we do static timing analysis
 </details>
 
 <details>
 <summary>Congestion aware placement using RePlAce</summary>
+
++ We have to remove congestions and overlapping between cells.
++ Let's run placement
++ We have to converge the overflow
++ To do placement 
+```
+run_placement
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/97b79538-8544-461b-ba90-cc337e15bda6)
+
++ To view placed cells
+```
+vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/18-09_06-22/results/placement$ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/0e59e337-a026-45c2-8647-ac214a7887ad)
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/f6a11e6a-5d74-4513-9f69-b9272658069f)
+
 </details>
 
 </blockquote>
@@ -431,6 +448,8 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 
 <details>
 <summary>Inputs for cell design flow</summary>
+
+
 </details>
 
 <details>
