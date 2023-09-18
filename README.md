@@ -286,6 +286,13 @@ less 2-opensta.timing.rpt
 
 <details>
 <summary>Pin placement and logical cell placement blockage</summary>
+
++ The connectivity information between gates is coded using VHDL/Verilog language and is called netlist.
++ Input and output lines can be placed in the space between core and die.
++ Blocks are placed nearer to the inputs they use. If their output lines are far, buffers are used. No cells can be placed in the area where another cell/block is placed.
++ Clock path lines are bigger than the other pins because they are ones which drive the circuit. So we need least resistance for them.
++ Now we block the area where pins are placed. This makes sure that the automated placement tool does not place cells in that area since it is reserved for pin placement.
++ Once this blocking is done, our Floor Plan is ready for placement and routing step.
 </details>
 
 <details>
