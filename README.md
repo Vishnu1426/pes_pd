@@ -460,12 +460,20 @@ vsduser@vsdsquadron:~/Desktop/work/tools/openlane_working_dir/openlane/designs/p
 - It has tech files which tell about labmda based rules.
 - SPICE model contains physical parameters like Vth, gamma, capacitance etc. These are given by the foundry.
 - User defined specs are things like cell height which is dependent on the power and ground lines which can be set by the user. Cell width is dependent on the timing data which can again be chosen by the user. Metal layers are also user defined specs. Pin locations are also user defined. Drawn gate length also can be set by user. User is library developer.
-
 </details>
 
 <details>
 <summary>Circuit design step</summary>
 
++ Design steps involves three sub steps:
+  1. Circuit design
+  2. Layout design
+  3. Characterization
+
++ Circuit Design has two parts:
+  1. Implement the function itself
+  2. Model the CMOS in order to meet the library requirements.
+  3. 
 </details>
 
 <details>
