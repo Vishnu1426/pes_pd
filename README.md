@@ -555,10 +555,47 @@ Transition time = time(slew_high_fall_thr) - time(slew_low_fall_thr)
 
 <details>
 <summary>IO placer revision</summary>
+
++ Suppose we want to change the values of variables in cofiguration files, we have to copy variable name and use set command in docker to change the value.
++ I/O pins are placed in an equidistant manner. 
 </details>
 
 <details>
 <summary>SPICE deck creation for CMOS inverter</summary>
+
++ SPICE Deck, we need to create it.
+  1. Component connectivity information. 
+  2. Component Values - W and L values of Pmos and Nmos and load capacitor value and source voltage values.
+  3. Identify Nodes - Nodes are basically points in between which components/cells are present.
+  4. Name the nodes
++ The order of pins in a transistor in SPICE deck is drain, gate, source, substrate.
++ The spice deck contains the following code:
+```
+*** MODEL Description ***
+*** NETLIST Description ***
+
+M! out in vdd vdd pmos W=0.375u L =0.25u
+M2 out in 0 0 nmos W=0.375u L =0.25u
+
+cload out 0 10f
+Vdd vdd 0 2.5
+Vin in 0 0.25
+
+*** SIMULATION COMMANDS ***
+.op
+.dc Vin 0 0.25 0.05
+
+*** .include tsmc_025um_model.mod ***
+.LLIB "tsmc_025um_model.mod" CMOS_MODELS
+.end
+```
++ The words in '' in the following description are node names.
++ Cload is a capacitor connected between 'out' and '0' and has a value of 10f.
++ Vdd is supply voltage conected between 'vdd' and '0' and has value of 2.5.
++ Vin is supply voltage conected between 'in' and '0' and has value of 2.5.
++ In the '.dc' line we will sweep the Vin from 0 to 2.5 in steps of 0.05. This is to calculate the waveform at the output.
++ All the technology parameters like descriptions of nmos and pmos are given in the model file (.mod). That is how the code knows what is pmos and nmos.
++ W/L = 1.5
 </details>
 
 <details>
@@ -567,6 +604,8 @@ Transition time = time(slew_high_fall_thr) - time(slew_low_fall_thr)
 
 <details>
 <summary>Switching Threshold Vm</summary>
+
++ Switching Threshold voltage, Vm, is the point where Vin = Vout, or are almost approximaetly equal.
 </details>
 
 <details>
@@ -575,6 +614,8 @@ Transition time = time(slew_high_fall_thr) - time(slew_low_fall_thr)
 
 <details>
 <summary>Lab steps to git clone vsdstdcelldesign</summary>
+
+
 </details>
 
 </blockquote>
