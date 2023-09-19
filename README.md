@@ -7,10 +7,71 @@
 
 <details>
 <summary>Introduction to QFN-48 Package, chip, pads, core, die and IP</summary>
+
++ Arduino Microcontroller
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7f07c337-4492-43f9-8488-a6c142c23e5f)
+
++ The main chip that controls the entire board is:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/86d283de-4595-4c85-9f04-7bbe538633cb)
+
++ Since Arduino is open source, there are many different chips which can be used and varies from board to board.
++ Around the chip there are many interfaces which are connected to the chip.
++ A typical block diagram view of the board is:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/94b38a3f-3df8-4832-9050-901015ff2abf)
+
++ SDRAM would be an external chip.
++ A labelled diagram of pins in the IC is as follows:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/42fdc799-e438-413e-a3ab-12c97b56f709)
+
++ The main chip would be connected to the package pins by things known as wirebounds.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6b74ecc0-6fcd-4ca3-b103-d195f5c91e4a)
+
++ Let us open up the chip
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/4a1ff79b-b5d3-4565-b784-60ea35a559e9)
+
++ The blue parts are called PADS. These are things which allow the signal to flow from outside to the internals of the IC and vice versa.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ac68fa59-dd4d-48f0-89c1-65782463b2fe)
+
++ The CORE is basically the part of the IC which contains all the logic cells and their connections.
++ The CORE PADS, pins etc. all together is called a die. The die is the entire piece which contains elements of the IC
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/736d7114-6053-4d3b-9052-aef620a615dd)
+
++ This is what a sample RISC-V SoC along with the required components in an IC looks like in a higher level of abstraction.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/4a704eed-8ffd-4d4a-8fb9-e83d16488088)
+
++ The PLLs, ADC, DAC and SRAM and other similar components are called Foundry IPs.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/fa84d31c-094d-407f-bf01-5518b8fba5ba)
+
++ All the manufacturing of ICs are done in a Foundry.
++ Next are macros - these are blocks of pure digital logic.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9f6aa99f-df2c-4f5a-85b4-c19b2e11441b)
 </details>
 
 <details>
 <summary>Introduction to RISC-V</summary>
+
++ An Instruction Set Architecture (ISA) is part of the abstract model of a computer that defines how the CPU is controlled by the software.
++ The ISA acts as an interface between the hardware and the software, specifying both what the processor is capable of doing as well as how it gets done.
++ RISC-V[b] (pronounced "risk-five") is an open standard instruction set architecture (ISA) based on established reduced instruction set computer (RISC) principles.
++ Unlike most other ISA designs, RISC-V is provided under royalty-free open-source licenses.
++ A number of companies are offering or have announced RISC-V hardware; open source operating systems with RISC-V support are available, and the instruction set is supported in several popular software toolchains.
++ A sample C program compiled to RISC-V assembly language program.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/59b92c50-a382-4404-8832-a4138966542d)
+
++ This assembly program is then converted to machine languare program which is basically 1s and 0s.
++ These 1s and 0s are then converted to electrical signals.
 </details>
 
 <details>
