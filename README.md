@@ -840,18 +840,103 @@ magic -d XR
 
 <details>
 <summary>Lab exercise to fix poly.9 error in Sky130 tech-file</summary>
+
++ We have to add the drc rules for poly in the tech file sky130A.tech
++ Add the allplynonres drc spacing rule as shown below:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/84b3c34f-3205-425a-b4d5-197af7323818)
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/e468d769-2edd-41c4-ad9b-5e6fd6821c42)
+
++ After that, in the tkcon window type the following
+```
+tech load sky130A.tech
+drc check
+```
++ The drc rule will be applied and we will be able to see the changes.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/67032f4d-7078-4d20-b6bf-39c2a640b66a)
+
 </details>
 
 <details>
 <summary>Lab exercise to implement poly resistor spacing to diff and tap </summary>
+
++ Next we need to change some more rules in the tech file so that all the drc are included.
+```
+change *nds to alldiff
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/4369ae02-e70c-41eb-84ee-6376da222545)
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/d9670a4b-bb13-4a82-982b-3a20d9952446)
+
 </details>
 
 <details>
 <summary>Lab challenge exercise to describe DRC error as geometrical construct</summary>
+
++ DRC rules check for leftover area using boolean operations on the layout cells.
++ We show in this that drc rules can be done as geometrical constructs.
++ Load nwell.mag
++ Let us see nwell.6
++ Type the following commands in the tkcon window.
+```
+cif ostyle drc
+cif see dnwell_shrink
+cif see nwell_missing
+```
+The following is displayed for nwell.6
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9d9ed902-d727-4af5-99b7-0573c51a562b)
+
 </details>
 
 <details>
 <summary>Lab challenge to find missing or incorrect rules and fix them</summary>
+
++ We can see that the nwell.4 shows incorrect implementation, since all nwells must contain metal contacted taps and this one does not have that.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/3d1f4502-62e1-406c-a136-969c403f23eb)
+
++ We do the following changes in the tech file:
+1. Add the following after "templayer nwell_missing" in "style drc"
+```
+templayer nwell_tapped nwell
+bloat-all nsc nwell
+
+templayer nwell_untapped
+and-not nwell_tapped
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ecb255a4-edc3-4e13-b3ba-26ba499371e7)
+
+2. Add the following in "NWELL"
+```
+ variants (full)
+ cifmaxwidth nwell_untapped 0 bend_illegal \
+	"Nwell Missing Tap (nwell.4)"
+ variants *
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/1dc0ba41-0303-4f4c-9aa3-f649ff6d3072)
+
+3. Save the file
+4. Do the following commands in the tkcon window
+```
+drc check
+drc style drc(full)
+drc check
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/d40fce15-3273-4dd8-b7b7-d635a63958e6)
+
++ nwell.4 still shows error
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/5d97fcc9-aad0-46fe-a12a-7deba4a30052)
+
++ To rectufy this we need to add a contact.
++ Select the nwell.4 and move your pointer to an empty area and press 'c'. This will copy paste the nwell.4
++ Now select a small area on the copied cell and hover over 'nsubstratecontact' on the right side. Now press 'p'
++ This will paint the selected area with the contact.
++ Run the drc check again and now we will not get any error.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/023473d8-4f2f-4ff2-8fd2-bed2b9a95e06)
+
 </details>
 
 </blockquote>
@@ -867,9 +952,6 @@ magic -d XR
 
 <details>
 <summary>Propagation delay and transition time</summary>
-
-
-
 
 
 
