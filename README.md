@@ -1,4 +1,4 @@
-![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/d1932c80-b74b-4908-875c-e500a925c59d)# ADVANCED PHYSICAL DESIGN USING OPENLANESKY130
+# ADVANCED PHYSICAL DESIGN USING OPENLANESKY130
 
 ## Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
 
@@ -1424,12 +1424,10 @@ expand
 
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/0891c5b6-2920-4069-8e37-82778a8b3723)
 
-
 </details>
 
 </blockquote>
 </details>
-
 
 
 <details>
@@ -1442,7 +1440,6 @@ expand
 <details>
 <summary>Introduction to clock jitter and uncertainty</summary>
 
-![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b86fa8ce-5cda-4b2c-98d7-d0233fbcbe91)
 </details>
 
 <details>
