@@ -189,7 +189,7 @@
   
   ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/55793a3f-a5c1-465a-9dc7-3cfd7382bfa4)
 
-  3. Detailed Placement - The cells are considered in different areas in the chip and arranged and placed so that no overlap etc. occurs between cells.
+  2. Detailed Placement - The cells are considered in different areas in the chip and arranged and placed so that no overlap etc. occurs between cells.
 
   ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/43cfff29-2a8f-47d6-b354-6dfd71114a49)
   
@@ -209,13 +209,34 @@
   2. Layout vs Schematic (LVS) - Compares the output of the layout and the simulation output.
 + Timing Verifications
   1. Static Timing Analysis (STA) - Divides the entire circuit into timing paths and checks for delays.
-
-
-
 </details>
 
 <details>
 <summary>Introduction to OpenLANE and Strive chipsets</summary>
+
++ When we are using opensource tools, the following things have to be taken care of:
+  1. Toold Qualification - Whether the tools are qualified and are good enough to actually be useful.
+  2. Toold Calibration - Whether the tools are calibrated to the right values.
+  3. Missing Tools - If some tools or parts of them are missing, they have to be taken care of. 
+
++ OPENLANE
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/c4a1de8d-883f-4629-8c9c-ffa08171bc1b)
+
++ Started out as an  Open-Source Flow for a True Open Source Tape-out experiment.
++ striVe is a family of open everything SoCs - Open PDK, Open EDA and Open RTL
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/d88537bc-5b43-4b23-a1ce-06575aaac173)
+
++ striVe family:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/f96e1b29-18d7-47d5-ba4f-b52c04bcea86)
+
++ The main goal of openlane is to provide a clean GDSII with no human interventions.
+
+
+
+  
 </details>
 
 <details>
