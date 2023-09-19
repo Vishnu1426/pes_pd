@@ -215,8 +215,8 @@
 <summary>Introduction to OpenLANE and Strive chipsets</summary>
 
 + When we are using opensource tools, the following things have to be taken care of:
-  1. Toold Qualification - Whether the tools are qualified and are good enough to actually be useful.
-  2. Toold Calibration - Whether the tools are calibrated to the right values.
+  1. Tools Qualification - Whether the tools are qualified and are good enough to actually be useful.
+  2. Tools Calibration - Whether the tools are calibrated to the right values.
   3. Missing Tools - If some tools or parts of them are missing, they have to be taken care of. 
 
 + OPENLANE
