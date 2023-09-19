@@ -891,13 +891,14 @@ The following is displayed for nwell.6
 
 <details>
 <summary>Lab challenge to find missing or incorrect rules and fix them</summary>
-
+	
 + We can see that the nwell.4 shows incorrect implementation, since all nwells must contain metal contacted taps and this one does not have that.
 
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/3d1f4502-62e1-406c-a136-969c403f23eb)
 
 + We do the following changes in the tech file:
 1. Add the following after "templayer nwell_missing" in "style drc"
+
 ```
 templayer nwell_tapped nwell
 bloat-all nsc nwell
@@ -918,6 +919,7 @@ and-not nwell_tapped
 
 3. Save the file
 4. Do the following commands in the tkcon window
+
 ```
 drc check
 drc style drc(full)
