@@ -618,6 +618,25 @@ Vin in 0 0.25
 <details>
 <summary>Lab steps to git clone vsdstdcelldesign</summary>
 
++ We will use the sykwater libraries for nmos and pmos from github.
+```
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+cd vsdstdcelldesign/
+ls -ltr
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/609f0495-03c3-42ed-b70d-4b020229a6de)
+
++ We are not going to make the inverter from scratch.
++ We will do the spice extraction and post layout spice simulations from the cloned repository.
++ sky130A.tech has been copied from the pdks folder into the cloned repository for ease.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/80a3a9a0-3510-4499-9f55-d7e2c5400eee)
+
++ To view the .mag file of the sky130A inverter:
+```
+magic -T sky130A.tech sky130_inv.mag &
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/60c10027-73f1-47ef-805e-07895fde4e1b)
 
 </details>
 
@@ -633,19 +652,84 @@ Vin in 0 0.25
 </details>
 
 <details>
-<summary>Optimize placement using estimated wire-length and capacitance </summary>
+<summary>Formation of N-well and P-well</summary>
 </details>
 
 <details>
-<summary>Final placement optimization</summary>
+<summary>Formation of gate terminal</summary>
 </details>
 
 <details>
-<summary>Need for libraries and characterization</summary>
+<summary>Lightly doped drain (LDD) formation </summary>
 </details>
 
 <details>
-<summary>Congestion aware placement using RePlAce</summary>
+<summary>Source and drain formation</summary>
+</details>
+
+<details>
+<summary>Local interconnect formation </summary>
+</details>
+
+<details>
+<summary>Higher level metal formation </summary>
+</details>
+
+<details>
+<summary>Lab introduction to Sky130 basic layers layout and LEF using inverter  </summary>
+
++ When poly crosses n-diffusion, it is nmos and when poly crosses p-diffusion it is pmos.
++ The highlighted part in the below image as shown is an nmos.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/dc1eb504-184f-4761-9718-3796306f410f)
+
++ The highlighted part in the below image as shown is an pmos.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/da4cf776-e1c9-4fa6-b99f-375538294c77)
+
++ The highlighted part shows the connectivity between drain of pmos and drain of nmos.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a11e8138-b9c2-4329-be48-28cf86fbe4b0)
+
++ The highlighted part shows the connectivity between source of pmos and vdd.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ce68c648-1c89-4a36-84d7-8297db1be2e8)
+
++ The highlighted part shows the connectivity between source of nmos and gnd.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/148fc7fc-5280-47a0-a775-880a8e290e12)
+
++ LEF has all the information about the metal layers. It has no information about the logic part.
+</details>
+
+<details>
+<summary>Lab steps to create std cell layout and extract spice netlist</summary>
+
++ For Bouding box creation:
++ llx - lower left x value
++ lly - lower left y value
++ urx - upper right x value
++ ury - upper right y value
++ If DRC violations occur, it can be seen by clicking on the drc tab in magic window and then the tkcon window the specifics of the DRC error will be displayed and in the magic window, the part where the error occurs is highlighted and zoomed in.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/3e3281a3-ae2c-4cee-a118-706bec48b7d8)
+
++ First we will do spice extraction of the layout that we have opened.
++ Type the following the tkcon window.
+```
+extract all
+```
++ The .ext file has been extracted to the directory we were working in
+
+ ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/68a03450-d6b8-464c-8925-612ca4341c9c)
+
++ To do spice extraction. This will also extract parasitics.
+```
+ext2spice cthresh 0 rthresh 0
+ext2spice
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/d2931ed6-4d78-4767-9ab4-8231d9fccd79)
+
 </details>
 
 </blockquote>
@@ -653,22 +737,86 @@ Vin in 0 0.25
 
 
 <details>
-<summary>Cell design and characterization flows</summary><blockquote>
+<summary>Sky130 Tech File Labs</summary><blockquote>
 
 <details>
-<summary>Inputs for cell design flow</summary>
+<summary>Lab steps to create final SPICE deck using Sky130 tech </summary>
+
++ The .spice file looks like this:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/984d5db9-ab04-4142-bae9-20b76f272bb8)
+
 </details>
 
 <details>
-<summary>Circuit design step</summary>
+<summary>Lab steps to characterize inverter using sky130 model files</summary>
+
++ Open ngspice
+```
+ngspice sky130_inv.spice
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/c5395bf3-ad2b-4c61-85cc-de44c64690b1)
+
++ Plot output vs time
+
+```
+plot y vs time a
+```
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/fc8b016c-52d2-436f-ab05-7aac1c5993c7)
+
++ Next is to characterize inverter.
++ We will check the 205 value first and then the 80% signal value
++ The following graph will be displayed for rise time.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/47f95375-768d-4f96-add5-04d2e125f729)
+
++ The value of the points which were of interest on the signal are:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a3ea88c6-13e2-4191-8ac4-7ec736d2c1bf)
+
++ The rise time is 0.039 ns
++ The following graph will be displayed for rise time.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/c97385e3-dff7-4a0b-908a-7af37da5a976)
+
++ The fall time is 0.02851ns.
++ The propagation delay graph would be:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/00a0e44b-9674-4f9a-b5a8-edb14ff4833f)
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/8a64e512-d285-40c5-8cad-7c3c4f923d12)
+
++ The propagation delay is 0.03725ns.
+  
 </details>
 
 <details>
-<summary>Layout design step</summary>
+<summary>Lab introduction to Magic tool options and DRC rules </summary>
 </details>
 
 <details>
-<summary>Typical characterization flow</summary>
+<summary>Lab introduction to Sky130 pdk's and steps to download labs</summary>
+</details>
+
+<details>
+<summary>Lab introduction to Magic and steps to load Sky130 tech-rules </summary>
+</details>
+
+<details>
+<summary>Lab exercise to fix poly.9 error in Sky130 tech-file</summary>
+</details>
+
+<details>
+<summary>Lab exercise to implement poly resistor spacing to diff and tap </summary>
+</details>
+
+<details>
+<summary>Lab challenge exercise to describe DRC error as geometrical construct</summary>
+</details>
+
+<details>
+<summary>Lab challenge to find missing or incorrect rules and fix them</summary>
 </details>
 
 </blockquote>
