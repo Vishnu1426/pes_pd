@@ -1360,19 +1360,15 @@ set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
 add_lefs -src $lefs
 ```
 
-
++ Next let's do synthesis and see whether it is able to map the design to the standard cell library.
 ```
 run_synthesis
-
-set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
-
-add_lefs -src $lefs
 ```
++ Synthesis was successful
 
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6e0a032b-8232-46c7-8b77-c6db84a3dd32)
 
-
-
-![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b86fa8ce-5cda-4b2c-98d7-d0233fbcbe91)
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6a19a9b8-f259-4d3c-a9d2-5e10d222505a)
 
 </details>
 
@@ -1390,6 +1386,45 @@ add_lefs -src $lefs
 
 <details>
 <summary>Lab steps to configure synthesis settings to fix slack and include vsdinv</summary>
+
++ As it can be seen there is a lot of slack. 
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/92fc58b9-d63e-4e07-8923-bc41f7611af8)
+
++ Let us try to rectify it. Update the environment variables as shown below.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/500c2ac3-49b7-423a-9818-649f5318b661)
+```
+run_synthesis
+```
+
++ Next let us run floorplan and run pplacement
+```
+run_floorplan
+run_placement
+```
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/e626a3e5-bf94-41f3-a4a7-6c032a5c1394)
+
++ Next let us check the placed design in the results folder. Type this in the results folder created in run->date.
+```
+magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/4c637ef9-14d9-4f4d-910b-aab083a930ec)
+
++ The sky130_vsdinv - _17251_
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/1c3a1729-18ae-41b8-884e-d1bea3f8479b)
+
++ Let's expand some random cells. Type this in the tkcon window after selecting one of the inverter instances.
+```
+expand
+```
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/0891c5b6-2920-4069-8e37-82778a8b3723)
+
+
 </details>
 
 </blockquote>
