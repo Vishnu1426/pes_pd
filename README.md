@@ -87,7 +87,7 @@
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a0b8b6ab-6769-498d-b77a-0a8dd8d694c2)
 
 + There needs to be an interface between every language.
-+ The interface which is in between the assembly language and layout is called the Hardware description language.
++ The interface which is in between the assembly language and layout is called the Hardware Description Language.
 + An example hardware which can implement the assembly logic would be a picorv32 core. This picorv32 core is defined using an HDL program.
 
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/39235fe8-d41f-4781-a82f-9ccce564a8ef)
@@ -132,11 +132,86 @@
 <details>
 <summary>Introduction to all components of open-source digital asic design</summary>
 
++ Digital ASIC design can be abstracted broadly as
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/f663ac08-d0fd-41b4-94e3-cd4074666afb)
+
++ To do Open Source ASIC design, we need all open source EDA tools, RTl designs and PDK data.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/02166064-4b18-4a97-b530-c3f54df36572)
+
++ Open source EDA tools are Qflow, OpenROAD and OpenLANE
++ Open source RTL designs are librecores.org, opencores.org and github.com
++ In the early days the IC design was majorly controlled by those who knew physics well.
++ Then came the labda based design rules which separated the physics from the design step. Physics is indeed involved. However, we need not worry about it while designing.
++ PDK - Process Design Kits, are an in terface between Fab and designers.
++ PDk can be summarised as follows:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a80c50f7-87b4-41f7-aa49-b50e7f7ad544)
 
 </details>
 
 <details>
 <summary>Simplified RTL2GDS flow</summary>
+
++ A simplified RTL to GDSII flow diagram with only the major steps would look like:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/89bf2bbb-956a-4077-b689-38c85bf28e65)
+
++ Synthesis - Converts RTL to a circuit out of components from a standard cell library (SCL). The result is called an HDL file called Gate Level Letlist.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/43669470-346c-4622-b507-dd92338f67cb)
+
++ Standard cells have regular layouts. Each cell comes with different views/models. Liberty view has electrical models, HDL and spice cells. We also have the GDSII view and the Lef view.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/bca2eac8-53f0-4167-96f8-6e2381e953f1)
+
++ Floor Planning - Planning the location and design of the area where cells are going to be placed. There are different types of Floor Planning.
+  1. Chip Floor Planning -
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ea2fce4a-afe8-49ff-a271-c0bfbc84ffb9)
+
+  2. Macro Floor Planning -
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7d79684c-4445-4e51-b308-f373fd471b8e)
+
++ Power planning - Planning the power distribution and efficiency of power consumption of the IC.
++ Power pads are connected to horizontal and vertical strips inside the IC. This is done to reduce resistance.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a4409a14-18bf-4cef-a9cb-a0e853d93d00)
+
++ Placement - Placing the cells on the planned floor. These cells are taken from the Gate Level Netlist generated out of the synthesis.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ea224cbf-0f2f-4fe6-a906-8ac7082a55f7)
+
++ Placement is usually done in two steps:
+  1. Global Placement - Considering an entire chip, the cells are are arranged and placed in approximately right locations. At this stage cell overlap exists.
+  
+  ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/55793a3f-a5c1-465a-9dc7-3cfd7382bfa4)
+
+  3. Detailed Placement - The cells are considered in different areas in the chip and arranged and placed so that no overlap etc. occurs between cells.
+
+  ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/43cfff29-2a8f-47d6-b354-6dfd71114a49)
+  
++ Clock Tree synthesis - All the parts of the chip, all the gates, registers etc should receive the same direct or derived clock signal without power loss or unintended delay since clock signal is what drives a circuit.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/8ede5b21-a0eb-452f-8088-608e5b8b86e6)
+
++ Routing - Connecting all the cell interconnects using available metal layers.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ff6729b1-7f29-41ce-9cf0-82e704a3e87d)
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/3da1ee21-1681-496f-95b9-371910d4d023)
+
++ Sign off - Signing off with last steps which involve checks amd verifications.
++ Physical Verifications
+  1. Design Rule Check (DRC) - Checks if all the design constraints are met. For eg. lambda based rules.
+  2. Layout vs Schematic (LVS) - Compares the output of the layout and the simulation output.
++ Timing Verifications
+  1. Static Timing Analysis (STA) - Divides the entire circuit into timing paths and checks for delays.
+
+
+
 </details>
 
 <details>
