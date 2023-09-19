@@ -1,4 +1,4 @@
-# ADVANCED PHYSICAL DESIGN USING OPENLANESKY130
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/d1932c80-b74b-4908-875c-e500a925c59d)# ADVANCED PHYSICAL DESIGN USING OPENLANESKY130
 
 ## Day 1 - Inception of open-source EDA, OpenLANE and Sky130 PDK
 
@@ -836,7 +836,7 @@ Transition time = time(slew_high_fall_thr) - time(slew_low_fall_thr)
 *** MODEL Description ***
 *** NETLIST Description ***
 
-M! out in vdd vdd pmos W=0.375u L =0.25u
+M1 out in vdd vdd pmos W=0.375u L =0.25u
 M2 out in 0 0 nmos W=0.375u L =0.25u
 
 cload out 0 10f
@@ -1212,16 +1212,168 @@ drc check
 
 <details>
 <summary>Lab steps to convert grid info to track info</summary>
+
++ OpenLANE is a Place and Route tool.
++ For Place and Route we only need Input, Output, Power and Ground ports information. This is available in lef files.
++ So the next step would be extract a lef file out of the mag file.
++ It would be interesting to see if we can plug the lef file into the picorv32 core. This is what we will do.
++ Open the mag file in the vsdstdcelldsign directory.
+```
+magic -T sky130A.tech sky130_inv.mag 
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/daf47620-2628-4012-9c8c-d3d116380b39)
+
++ There are some guidelines that we must follow:
+  1. The input and the output must lie on the intersection of the vertical and horizontal tracks.
+  2. The width of the standard cell should be an odd multiples of horizontal track pitch and height should be an odd multiple of horizontal track pitch.
+ 
++ Let us undestand what tracks are. Tracks are used during the routing stage. Routes go over the tracks.
++ Go to openlane_working_directory and type the following.
+```
+cd pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd
+less tracks.info
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/655a802c-2762-41c9-b463-c0897272acad)
+
++ Let us use the grid commnad. Before that check what all the grid command needs.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/5b8af821-a6a8-401e-842b-0357dcc481aa)
+
++ Type in the values of the track from the track file into the grid command
+```
+grid 0.46um 0.34um 0.23um 0.17um
+```
++ Now the grid definition gets converted to the size definition of the tracks.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7235d93a-4422-49b4-8fd2-c04cbf6d21ad)
+
++ Since the grids have the size of the tracks, we can see that the input and output lie on the intersection of the vertical and horizontal tracks.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/30288f82-11f3-4de6-b68f-6ed6256e2d2c)
+
 </details>
 
 <details>
 <summary>Lab steps to convert magic layout to std cell LEF</summary>
 
-![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b86fa8ce-5cda-4b2c-98d7-d0233fbcbe91)
++ The second guideline was that the width of the standard cell should be an odd multiples of horizontal track pitch and height should be an odd multiple of horizontal track pitch.
++ We can see that also has beem met.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/057d1eb2-c413-4cc8-bebe-6f98d655437c)
+
++ When we extract the lef file, the ports are the ones which are going to be pins. Labels hve to be coverted to ports (input or output).
++ If we want to define our ports, then select the cell and go to edit menu->Text. Fill it up in the following way and give whatever name and port number you want.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/2fdf621d-2ac8-4f93-8771-8afe08c4a682)
+
++ Let us save this as sky130_vsdinv.mag
+```
+save sky130_vsdinv.mag 
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/bd006e94-3b56-46f2-9084-642afb67f91e)
+
++ We can see that the cell design has been saved.
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/312bb837-22d3-4855-a5e3-75af0c607ea1)
+
++ Open the newly created mag file
+```
+magic -T sky130A.tech sky130_vsdinv.mag &
+```
+
++ To extract the lef file, type in the tkcon window.
+```
+lef write 
+```
++ If we don't specify any name, the lef file will have the name of the mag file itself. We can see in the directory that the lef file has been created.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/458a751e-9a26-4cf5-8a99-e5ca6bc252b0)
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/59fa9354-0131-43d1-bab1-120ecef7b6cb)
+
++ To open the lef file
+```
+less sky130_vsdinv.lef
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/1a15e326-7d64-46ef-83c4-d0592a4aaa93)
+
 </details>
 
 <details>
 <summary>Introduction to timing libs and steps to include new cell in synthesis</summary>
+
++ Now it is time to plug in the lef file into picorv32 folder.
++ Let us put all our files into the src folder for ease.
++ Go to src folder. The files currently in src directory are:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/4125eba5-e03a-4da9-b97c-287abdb93c5f)
+
++ Copy the lef file into the src folder
+```
+cp sky130_vsdinv.lef /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src
+```
++ We have to include our custom cell into the openlane flow. First step is synthesis. So we need a library which has the cell definitions.
++ Go to libs folder and check out the typical library file
+```
+less 
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/5e6c6ad9-b634-4eb1-8c2d-4109b1448ea7)
+
++ Our cell is towards the end.
+```
+/vsdinv
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/4f607915-72d9-43b6-bf65-5740aa705875)
+
++ Copy all the library files into src folder
+```
+cp sky130_fd_sc_hd__* /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/eeabf26b-6f95-4e74-9ba8-1aea31abbaf0)
+
++ Before moving ahead we need to modify our config.tcl in picorv32a folder
+```
+gedit config.tcl
+```
++ Add the following lines into the config.tcl
+```
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130/sky130_fd_sc_hd__typical.lib"
+
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/361f212b-2192-4922-8073-85667f72c2fb)
+
++ Now open docker and invoke openlane and set to overwrite the previous directory.
+```
+docker 
+./flow.tcl -interactive
+package require openlane 0.9 
+prep -design picorv32a -tag 19-09_21-30 -overwrite
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6740123f-1a11-4762-9f33-776876ae0126)
+
++ Type in two more lines in the openlane so that it knows to take in the lef file.
+```
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+add_lefs -src $lefs
+```
+
+
+```
+run_synthesis
+
+set lefs [glob $::env(DESIGN_DIR)/src/*.lef]
+
+add_lefs -src $lefs
+```
+
+
+
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b86fa8ce-5cda-4b2c-98d7-d0233fbcbe91)
+
 </details>
 
 <details>
