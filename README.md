@@ -1079,7 +1079,7 @@ drc check
 </details>
 
 <details>
-<summary>Power Distribution Network and routing</summary></blockquote>
+<summary>Power Distribution Network and routing</summary><blockquote>
 
 <details>
 <summary>Lab steps to build power distribution network </summary>
@@ -1097,7 +1097,7 @@ drc check
 </details>
 
 <details>
-<summary>TritonRoute Features</summary></blockquote>
+<summary>TritonRoute Features</summary><blockquote>
 
 <details>
 <summary>TritonRoute feature 1 - Honors pre-processed route guides</summary>
