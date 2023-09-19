@@ -570,6 +570,7 @@ Transition time = time(slew_high_fall_thr) - time(slew_low_fall_thr)
   4. Name the nodes
 + The order of pins in a transistor in SPICE deck is drain, gate, source, substrate.
 + The spice deck contains the following code:
+
 ```
 *** MODEL Description ***
 *** NETLIST Description ***
@@ -589,6 +590,7 @@ Vin in 0 0.25
 .LLIB "tsmc_025um_model.mod" CMOS_MODELS
 .end
 ```
+
 + The words in '' in the following description are node names.
 + Cload is a capacitor connected between 'out' and '0' and has a value of 10f.
 + Vdd is supply voltage conected between 'vdd' and '0' and has value of 2.5.
@@ -596,6 +598,7 @@ Vin in 0 0.25
 + In the '.dc' line we will sweep the Vin from 0 to 2.5 in steps of 0.05. This is to calculate the waveform at the output.
 + All the technology parameters like descriptions of nmos and pmos are given in the model file (.mod). That is how the code knows what is pmos and nmos.
 + W/L = 1.5
+
 </details>
 
 <details>
