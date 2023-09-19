@@ -71,6 +71,16 @@
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/59b92c50-a382-4404-8832-a4138966542d)
 
 + This assembly program is then converted to machine language program which is basically 1s and 0s.
+
++ Some RISCV Assemmbly Instructions are
+1. lui: Load Upper Immediate 
+
+![LUI](https://github.com/Vishnu1426/PES_Asic_course_7th_sem/assets/79538653/28ee7cf1-99fd-4fb8-979e-5ddb95b0f8f4)
+
+2. addi: Add immediate
+
+![addi](https://github.com/Vishnu1426/PES_Asic_course_7th_sem/assets/79538653/5ff94dea-4d32-4943-b0ea-441e9196d299)
+
 + These 1s and 0s are then converted to electrical signals which are high and low voltages. This is the language that hardware understands.
 + The assembly logic is converted to a layout which is the hardware that performs the programmed logic. This is called Layout.
 
@@ -89,6 +99,27 @@
 
 <details>
 <summary>From Software Applications to Hardware</summary>
+
++ Applications that we use everyday run on hardware.
++ How does this work? ISA explains this to a certain level. But let's go into it deeper.
++ The application software is the computer program of an application or app.
++ The application software enters into a block called system software.
++ System software consists of OS, Compiler and Asspembler in a braod sense.
++ The system software block converts the application software program to hardware language and helps it run.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ac4e22d6-03d5-4042-ac26-1767272e36e6)
+
++ Let us look at the parts of the system software:
+1. Operating System - It handles IO operations, allocates memory, and generates low level system functions. The output of the OS is basically functions in C/C++/Java/VB and that is sent to the compiler. 
+2. Compiler - It takes the incoming C/C++/Java/VB program from the OS and generates a .exe file in windows which is an executable file. This file contains all the instructions in the assembly language of the hardware on which the program is going to be run.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/01165b27-22ea-40d8-99ee-59f21fee28be)
+ 
+3. The assembler converts the assembly language to machine language which is basically 1s and 0s. This is then sent to the hardware.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9389a93f-ea6e-419b-a3de-0749907554bc)
+
+4. Another intermediate interface between machine language and the hardware is RTL. It implements the machine language into a logic design of the hardware.
 </details>
 
 </blockquote>
@@ -100,6 +131,8 @@
 
 <details>
 <summary>Introduction to all components of open-source digital asic design</summary>
+
+
 </details>
 
 <details>
