@@ -944,23 +944,176 @@ drc check
 </blockquote>
 </details>
 
+## Day 4 - Pre-layout timing analysis and importance of good clock tree
 
 <details>
-<summary>General timing characterization parameters</summary><blockquote>
+<summary>Timing modelling using delay tables</summary><blockquote>
 
 <details>
-<summary>Timing threshold definitions</summary>
+<summary>Lab steps to convert grid info to track info</summary>
 </details>
 
 <details>
-<summary>Propagation delay and transition time</summary>
-
-
+<summary>Lab steps to convert magic layout to std cell LEF</summary>
 
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b86fa8ce-5cda-4b2c-98d7-d0233fbcbe91)
+</details>
 
-  
+<details>
+<summary>Introduction to timing libs and steps to include new cell in synthesis</summary>
+</details>
+
+<details>
+<summary>Introduction to delay tables</summary>
+</details>
+
+<details>
+<summary>Delay table usage Part 1</summary>
+</details>
+
+<details>
+<summary>Delay table usage Part 2</summary>
+</details>
+
+<details>
+<summary>Lab steps to configure synthesis settings to fix slack and include vsdinv</summary>
 </details>
 
 </blockquote>
+</details>
+
+
+
+<details>
+<summary>Timing analysis with ideal clocks using openSTA</summary><blockquote>
+
+<details>
+<summary>Setup timing analysis and introduction to flip-flop setup time</summary>
+</details>
+
+<details>
+<summary>Introduction to clock jitter and uncertainty</summary>
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b86fa8ce-5cda-4b2c-98d7-d0233fbcbe91)
+</details>
+
+<details>
+<summary>Lab steps to configure OpenSTA for post-synth timing analysis</summary>
+</details>
+
+<details>
+<summary>Lab steps to optimize synthesis to reduce setup violations </summary>
+</details>
+
+</blockquote>
+</details>
+
+
+<details>
+<summary>Clock tree synthesis TritonCTS and signal integrity</summary><blockquote>
+
+<details>
+<summary>Clock tree routing and buffering using H-Tree algorithm</summary>
+</details>
+
+<details>
+<summary>Crosstalk and clock net shielding </summary>
+</details>
+
+<details>
+<summary>Lab steps to run CTS using TritonCTS</summary>
+</details>
+
+<details>
+<summary>Lab steps to verify CTS runs </summary>
+</details>
+
+</blockquote>
+</details>
+
+
+<details>
+<summary>Timing analysis with real clocks using openSTA</summary><blockquote>
+
+<details>
+<summary>Setup timing analysis using real clocks </summary>
+</details>
+
+<details>
+<summary>Hold timing analysis using real clocks</summary>
+</details>
+
+<details>
+<summary>Lab steps to analyze timing with real clocks using OpenSTA</summary>
+</details>
+
+<details>
+<summary>Lab steps to execute OpenSTA with right timing libraries and CTS assignment</summary>
+</details>
+
+<details>
+<summary>Lab steps to observe impact of bigger CTS buffers on setup and hold timing</summary>
+</details>
+
+</blockquote>
+</details>
+
+
+## Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA
+
+<details>
+<summary>Routing and design rule check (DRC)</summary><blockquote>
+
+<details>
+<summaryIntroduction to Maze Routing Â LeeÂs algorithm</summary>
+</details>
+
+<details>
+<summary>LeeÂs Algorithm conclusion </summary>
+</details>
+
+<details>
+<summary>Design Rule Check </summary>
+
+</blockquote>
+</details>
+
+<details>
+<summary>Power Distribution Network and routing</summary></blockquote>
+
+<details>
+<summary>Lab steps to build power distribution network </summary>
+</details>
+
+<details>
+<summary>Lab steps from power straps to std cell power</summary>
+</details>
+
+<details>
+<summary>Basics of global and detail routing and configure TritonRoute </summary>
+</details>
+
+</blockquote>
+</details>
+
+<details>
+<summary>TritonRoute Features</summary></blockquote>
+
+<details>
+<summary>TritonRoute feature 1 - Honors pre-processed route guides</summary>
+</details>
+
+<details>
+<summary>TritonRoute Feature2 & 3 - Inter-guide connectivity and intra- & inter-layer routing</summary>
+</details>
+
+<details>
+<summary>TritonRoute method to handle connectivity</summary>
+</details>
+
+<details>
+<summary>Routing topology algorithm and final files list post-route</summary>
+</details>
+
+<blockquote>
 </details>
