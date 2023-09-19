@@ -797,10 +797,45 @@ plot y vs time a
 
 <details>
 <summary>Lab introduction to Sky130 pdk's and steps to download labs</summary>
+
++ To download drc_tests
+```
+wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/972f8c5c-9942-4bf4-b9d3-fb90dcc4ade5)
+
++ Move the compressed file to desktop using the following command.
+```
+mv drc_tests.tgz Desktop/
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/f42bf743-dbb3-4c15-a6aa-e51af5a31251)
+
++ Go to desktop and enter the following command to extract.
+```
+tar xfz drc_tests.tgz 
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/f92f60f9-f103-4cc6-a7a2-1d44e5c990fc)
+
++ Go inside drc_tests and check the files in it
+```
+cd drc_tests/
+ls
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/2b9b3526-a06e-4984-b448-1b22fcc58cad)
+
 </details>
 
 <details>
 <summary>Lab introduction to Magic and steps to load Sky130 tech-rules </summary>
+
++ To open the layout in the downloaded software
+```
+magic -d XR
+```
++ Then choose met3.mag from the file menu->open.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/18096fd4-d6aa-403f-a15a-bffa0d10b8b5)
+
 </details>
 
 <details>
@@ -832,6 +867,15 @@ plot y vs time a
 
 <details>
 <summary>Propagation delay and transition time</summary>
+
+
+
+
+
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b86fa8ce-5cda-4b2c-98d7-d0233fbcbe91)
+
+  
 </details>
 
 </blockquote>
