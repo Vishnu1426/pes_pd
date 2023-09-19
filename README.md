@@ -233,14 +233,72 @@
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/f96e1b29-18d7-47d5-ba4f-b52c04bcea86)
 
 + The main goal of openlane is to provide a clean GDSII with no human interventions.
++ Clean means
+  1. No LVS vioaltions.
+  2. No DRC vioaltions.
+  3. No Timing vioaltions (still work in progress)
 
-
-
-  
++ OpenLANE is tuned for skywater 130nm Open PDK. It also supports XFAB180 and GF130G.
++ It is containerized, meaning it is functional out of the box.
++ Can be used to harden (generate GDSII) Macros and Chips.
++ It has two modes of operation:
+  1. Autonomous - We configure the flow, press a button, wait for sometime and everything will be ready.
+  2. Interative - We can execute every command one by one.
++ Design Space Explorations - We can find the best set of flow configurations.
++ There are a large number of design examples also in OpenLANE.
 </details>
 
 <details>
 <summary>Introduction to OpenLANE detailed ASIC design flow</summary>
+
++ The following diagram shows the OpenLANE ASIC flow
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/ea78bfcf-9d8e-42b3-9702-1b6cddce604e)
+
++ OpenLANE is based on several open source projects such as:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/3a20d6c0-0aad-455f-b3d8-6b6338e08234)
+
++ Design RTL is sent to Yosys along with the constraints. It is mapped into standard cell library using abc.
++ Synthesis exploation allows us to select the best strategy based on how much delay and area is being consumed.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a72952b6-ab68-4c89-b107-ebc2f0cfc1e6)
+ 
++ Design exploration allows us to sweep design configurations and see the report.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/827bd958-759f-4777-95fd-215e014cacc9)
+
++ The design exploiration utility is also used for regression testing (CI). Compare the performance of different design configurations for different designs.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/c5374a96-4f71-4778-b7c8-4010bbff9231)
+
++ OpenLANE also has Design for Testability (DFT) and it involves the following steps:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a497f1f7-4b9f-4648-a06d-e0528de500e2)
+
++ Physical Immplementation is done using OpenROAD and involves the follling:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7ce7a4f3-0b43-48b7-808b-dfe61be5eaa6)
+
++ Everytime a netlist is modified, verification must be performed.
++ LEC (Logic Equivalence Check) - It is used to formally confirm that the function did not change after modifying the netlist. This is done by Yosys.
++ Dealing with Antenna Rule Violations:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7072eef9-0ff2-49e8-adac-a4d9bc065a61)
+
++ Solutions for antenna rule violatins:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/d671c892-054e-4afe-a52a-6d5b77b8fb17)
+
++ OpenLANE takes a preventive approach for dealing with antenna rule violations
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/61e68cd8-3fd5-429d-9464-160d1b139e5d)
+
++ Static Timing Analysis is done by OpenROAD's OpenSTA after doing the RC extraction: DEF2SPEF
++ Physical verification (DRC and LVS):
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/8b7ee1ec-31d7-4a65-930d-e97942536ee5)
+
 </details>
 
 </blockquote>
