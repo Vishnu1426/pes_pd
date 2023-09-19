@@ -70,8 +70,21 @@
 
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/59b92c50-a382-4404-8832-a4138966542d)
 
-+ This assembly program is then converted to machine languare program which is basically 1s and 0s.
-+ These 1s and 0s are then converted to electrical signals.
++ This assembly program is then converted to machine language program which is basically 1s and 0s.
++ These 1s and 0s are then converted to electrical signals which are high and low voltages. This is the language that hardware understands.
++ The assembly logic is converted to a layout which is the hardware that performs the programmed logic. This is called Layout.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a0b8b6ab-6769-498d-b77a-0a8dd8d694c2)
+
++ There needs to be an interface between every language.
++ The interface which is in between the assembly language and layout is called the Hardware description language.
++ An example hardware which can implement the assembly logic would be a picorv32 core. This picorv32 core is defined using an HDL program.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/39235fe8-d41f-4781-a82f-9ccce564a8ef)
+
++ The final working of a C program would basically look like:
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/fd9ac20d-4d01-40a0-b2c1-10ba6ea183f8)
 </details>
 
 <details>
