@@ -1586,12 +1586,28 @@ run_placement
 ```
 run_cts
 ```
-
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/f7dd17d5-e514-4aa0-bb62-c052f8696626)
 
 </details>
 
 <details>
 <summary>Lab steps to verify CTS runs </summary>
+
++ There are procs in cts file. Procs are similar to functions. To check  that go to openlane directory->scripts->tcl_commmands
+```
+ls -ltr
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/cd9871ca-bfb1-4efb-8b59-25c53f999904)
+```
+less cts.tcl
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/113fdec8-c3c3-490e-9256-8e95cd1e7cd5)
+
++ This is the cts file that run_cts uses.
++ OpenRoad does not contain synthesis.tcl because Yosys does synthesis.
++ The or_cts.tcl under the openroad directory contains
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7bc84651-cd44-4c5b-9c42-735eee0a3005)
 </details>
 
 </blockquote>
@@ -1611,14 +1627,83 @@ run_cts
 
 <details>
 <summary>Lab steps to analyze timing with real clocks using OpenSTA</summary>
+
++ Now that we have done the Clock Tree Synthesis, let's do timing analysis. Openroad also has an STA tool.
+```
+openroad
+read_lef /openLANE_flow/designs/picorv32a/runs/19-09_21-30/tmp/merged.lef
+```
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7aa31f21-0bd3-4aa2-8b8f-936617b0c7c7)
+
++ A def file will be created post cts
+```
+read_def /openLANE_flow/designs/picorv32a/runs/19-09_21-30/results/cts/picorv32a.cts.def
+```
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/73a9263e-ece1-469d-ba68-6527b3e039e3)
+
++ Now we will write a db file. The nwe will read it.
+```
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/19-09_21-30/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty -max $::env(LIB_SLOWEST)
+read_liberty -min $::env(LIB_FASTEST)
+```
 </details>
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b9dd52fd-5bee-41b8-bb0c-30ccd5820351)
+
++ Next we read the sdc file and then check the reports of the slack of setup and route.
+```
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock [all_clocks]
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/dcbaaa2f-9878-4ada-8342-4107a99e8313)
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b72c56f2-1f09-42ee-bc28-534fdf48a875)
 
 <details>
 <summary>Lab steps to execute OpenSTA with right timing libraries and CTS assignment</summary>
+
++ The previous analysis we did is not completely right.
++ This is because Triton CTS is built for typical library. But we used min and max library.
++ Exit from openroad and open it again and type in the following:
+```
+openroad
+write_db pico_cts.db
+read_db pico_cts.db
+read_verilog /openLANE_flow/designs/picorv32a/runs/19-09_21-30/results/synthesis/picorv32a.synthesis_cts.v
+read_liberty $::env(LIB_SYNTH_COMPLETE)
+link_design picorv32a
+read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
+set_propagated_clock (all_clocks)
+report_checks -path_delay min_max -fields {slow trans net cap input_pin} -format full_clock_expanded -digits 4
+```
++ The hold time there is no violation but setup time has violation since we had lot of slack in the netlist.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/851b540a-c35a-419e-87dc-501681e4a8c8)
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6fe0b5f2-2032-4ae9-a55f-5d854abc9157)
+
 </details>
 
 <details>
 <summary>Lab steps to observe impact of bigger CTS buffers on setup and hold timing</summary>
+
++ Having a bigger CTS will improve the setup and hold time constraints.
++ Now let's report the clock skews
+```
+report_clock_skew -hold
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/37fdfbbe-ec15-4a91-ab60-18808780b415)
+
+```
+report_clock_skew -setup
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9b37ecdb-ae78-45f9-8e82-38400a77f7f5)
+
 </details>
 
 </blockquote>
@@ -1649,14 +1734,31 @@ run_cts
 
 <details>
 <summary>Lab steps to build power distribution network </summary>
+
++ To run and generate the power distribution network, all we have to do is type
+```
+gen_pdn
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/09f882bd-2ed0-4489-8f8e-3ab8006061a7)
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/32f1a6d0-265c-481d-9e90-5ca0b20505f7)
+
++ It would have created def file.
 </details>
 
 <details>
 <summary>Lab steps from power straps to std cell power</summary>
+
++ This is how a power distribution network diagram looks like. The statistics provided shows all the parts in the diagram.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/bfca20f6-f492-4365-a5d8-d7bd3b61eb51)
+
 </details>
 
 <details>
 <summary>Basics of global and detail routing and configure TritonRoute </summary>
+
+
 </details>
 
 </blockquote>
