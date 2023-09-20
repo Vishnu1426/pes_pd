@@ -1758,6 +1758,14 @@ gen_pdn
 <details>
 <summary>Basics of global and detail routing and configure TritonRoute </summary>
 
++ OpenLANE uses the TritonRoute tool for routing. There are 2 stages of routing:
+1. Global routing: Routing region is divided into rectangle grids which are represented as course 3D routes (Fastroute tool)
+2. Detailed routing: Finer grids and routing guides used to implement physical wiring (TritonRoute tool)
+
++ To run routing type
+```
+run_routing
+```
 
 </details>
 
@@ -1781,6 +1789,12 @@ gen_pdn
 
 <details>
 <summary>Routing topology algorithm and final files list post-route</summary>
+
++ This is the routing topology algorithm
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6c2b7ef7-fc2d-44d7-abdc-bd454b6d6e16)
+
++ 
 </details>
 
 <blockquote>
