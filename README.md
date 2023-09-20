@@ -1559,6 +1559,34 @@ replace_cell _14462_ sky130_fd_sc_hd__a221o_4
 <details>
 <summary>Lab steps to run CTS using TritonCTS</summary>
 
++ After a lot of changing we were able to reduce the slack. We can still reduce it with further changes.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/8710c541-b5a5-47b0-8a5a-6f825ca3c171)
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b78d879f-046e-4cd6-a6ba-066a6cf6a3bd)
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/bdf924d1-2269-411f-8d38-d05452714d64)
+
++ We have to use write verilog and make sure that openlane uses this new netlist.
+```
+write_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/19-09_21-30/results/synthesis/picorv32a.synthesis.v
+```
++ Next we will run floorplan in openlane. This floorplan will now take the new netlist.
+```
+run_floorplan
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/fb693ec1-0c17-46ef-a3a4-cf1d06353162)
+
++ Next we run placement
+```
+run_placement
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/796a2937-cfe0-433f-b40c-36d920583589)
+
++ Next is Clock Tree Synthesis
+```
+run_cts
+```
+
 
 </details>
 
