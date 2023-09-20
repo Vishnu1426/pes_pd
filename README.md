@@ -1421,7 +1421,6 @@ magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs
 ```
 expand
 ```
-
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/0891c5b6-2920-4069-8e37-82778a8b3723)
 
 </details>
@@ -1444,12 +1443,104 @@ expand
 
 <details>
 <summary>Lab steps to configure OpenSTA for post-synth timing analysis</summary>
+
++ The STA configuration file has to have the following sources for performing the timing analysis. Let us create this .conf file in openlane directory and add the following lines in it.
+```
+set_cmd_units -time ns -capacitance pF -current mA -voltage V -resistance kOhm -distance um
+read_liberty -max /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib
+read_liberty -min /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib
+read_verilog /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/19-09_21-30/results/synthesis/picorv32a.synthesis.v
+link_design picorv32a
+read_sdc /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/base.sdc
+report_checks -path_delay min_max -fields {slew trans net cap input_pin}
+report_tns
+report_wns
+```
++ Next create my_base.sdc in src folder and add the following. The contents are taken from base.sdc in scripts folder. There are some changes however based on our specific file.
+```
+             set ::env(CLOCK_PORT) clk
+             set ::env(CLOCK_PERIOD) 12.000
+             set ::env(SYNTH_DRIVING_CELL) sky130_fd_sc_hd__inv_8
+             set ::env(SYNTH_DRIVING_CELL_PIN) Y
+             set ::env(SYNTH_CAP_LOAD) 17.65
+             create_clock [get_ports $::env(CLOCK_PORT)]  -name $::env(CLOCK_PORT)  -period $::env(CLOCK_PERIOD)
+             set IO_PCT  0.2
+             set input_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
+             set output_delay_value [expr $::env(CLOCK_PERIOD) * $IO_PCT]
+             puts "\[INFO\]: Setting output delay to: $output_delay_value"
+             puts "\[INFO\]: Setting input delay to: $input_delay_value"
+             
+             
+            set clk_indx [lsearch [all_inputs] [get_port $::env(CLOCK_PORT)]]
+            #set rst_indx [lsearch [all_inputs] [get_port resetn]]
+            set all_inputs_wo_clk [lreplace [all_inputs] $clk_indx $clk_indx]
+            #set all_inputs_wo_clk_rst [lreplace $all_inputs_wo_clk $rst_indx $rst_indx]
+            set all_inputs_wo_clk_rst $all_inputs_wo_clk
+            
+            
+            # correct resetn
+            set_input_delay $input_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] $all_inputs_wo_clk_rst
+            #set_input_delay 0.0 -clock [get_clocks $::env(CLOCK_PORT)] {resetn}
+            set_output_delay $output_delay_value  -clock [get_clocks $::env(CLOCK_PORT)] [all_outputs]
+            
+            # TODO set this as parameter
+            set_driving_cell -lib_cell $::env(SYNTH_DRIVING_CELL) -pin $::env(SYNTH_DRIVING_CELL_PIN) [all_inputs]
+            set cap_load [expr $::env(SYNTH_CAP_LOAD) / 1000.0]
+            puts "\[INFO\]: Setting load to: $cap_load"
+            set_load  $cap_load [all_outputs]
+```
+
++ After doing this let's run the sta in openlane directory.
+```
+sta pre_sta.conf
+```
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/62e0a296-d41a-4282-9a39-bcb934ed93a6)
+
 </details>
 
 <details>
 <summary>Lab steps to optimize synthesis to reduce setup violations </summary>
+
++ Right now hold time does not have any significance since we are uisng ideal clocks.
++ As we can see the slack is very high.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6dc890cb-9545-4fd3-86d8-c64df3b07728)
+
++ Delays are functions of input slew & output capacitance.
++ So we will try to reduce the input slew & output capacitance.
++ Reasons for high i/p slew is high fanout values
++ We can do the folllowing to reduce slack.
+```
+set ::env(SYNTH_MAX_FANOUT) 4
+run_synthesis
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/2a8e294b-e9ba-431a-825e-5410729d098d)
+
++ We can also upsize buffers as required and remove slack to optimum value.
+```
+replace_cell _14481_ sky130_fd_sc_hd__or4_4
+report_checks -fields {net cap slew input_pins} -digits 4
+```
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/a1b76bd5-6a5d-4700-94a9-c691a62ad2bf)
+
++ This can be done for other cells as well and we can see slack is reduced.
 </details>
 
+<details>
+<summary>Lab steps to do basic timing ECO </summary>
+
++ We can upsize other components and check the values.
+```
+replace_cell _14487_ sky130_fd_sc_hd__a221o_1
+replace_cell _15169_ sky130_fd_sc_hd__or2_4
+replace_cell _14462_ sky130_fd_sc_hd__a221o_4
+```
++ In the end we still have slack but it has reduced.
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/9e379f65-c1d0-4e9c-a34b-eac0a71b11d7)
+
+</details>
 </blockquote>
 </details>
 
@@ -1467,6 +1558,8 @@ expand
 
 <details>
 <summary>Lab steps to run CTS using TritonCTS</summary>
+
+
 </details>
 
 <details>
