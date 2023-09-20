@@ -863,17 +863,9 @@ Vin in 0 0.25
 </details>
 
 <details>
-<summary>SPICE simulation lab for CMOS inverter</summary>
-</details>
-
-<details>
 <summary>Switching Threshold Vm</summary>
 
 + Switching Threshold voltage, Vm, is the point where Vin = Vout, or are almost approximaetly equal.
-</details>
-
-<details>
-<summary>Static and dynamic simulation of CMOS inverter</summary>
 </details>
 
 <details>
@@ -907,34 +899,6 @@ magic -T sky130A.tech sky130_inv.mag &
 
 <details>
 <summary>Inception of Layout Â CMOS fabrication process</summary><blockquote>
-
-<details>
-<summary>Create Active regions</summary>
-</details>
-
-<details>
-<summary>Formation of N-well and P-well</summary>
-</details>
-
-<details>
-<summary>Formation of gate terminal</summary>
-</details>
-
-<details>
-<summary>Lightly doped drain (LDD) formation </summary>
-</details>
-
-<details>
-<summary>Source and drain formation</summary>
-</details>
-
-<details>
-<summary>Local interconnect formation </summary>
-</details>
-
-<details>
-<summary>Higher level metal formation </summary>
-</details>
 
 <details>
 <summary>Lab introduction to Sky130 basic layers layout and LEF using inverter  </summary>
@@ -1373,18 +1337,6 @@ run_synthesis
 </details>
 
 <details>
-<summary>Introduction to delay tables</summary>
-</details>
-
-<details>
-<summary>Delay table usage Part 1</summary>
-</details>
-
-<details>
-<summary>Delay table usage Part 2</summary>
-</details>
-
-<details>
 <summary>Lab steps to configure synthesis settings to fix slack and include vsdinv</summary>
 
 + As it can be seen there is a lot of slack. 
@@ -1431,15 +1383,6 @@ expand
 
 <details>
 <summary>Timing analysis with ideal clocks using openSTA</summary><blockquote>
-
-<details>
-<summary>Setup timing analysis and introduction to flip-flop setup time</summary>
-</details>
-
-<details>
-<summary>Introduction to clock jitter and uncertainty</summary>
-
-</details>
 
 <details>
 <summary>Lab steps to configure OpenSTA for post-synth timing analysis</summary>
@@ -1549,14 +1492,6 @@ replace_cell _14462_ sky130_fd_sc_hd__a221o_4
 <summary>Clock tree synthesis TritonCTS and signal integrity</summary><blockquote>
 
 <details>
-<summary>Clock tree routing and buffering using H-Tree algorithm</summary>
-</details>
-
-<details>
-<summary>Crosstalk and clock net shielding </summary>
-</details>
-
-<details>
 <summary>Lab steps to run CTS using TritonCTS</summary>
 
 + After a lot of changing we were able to reduce the slack. We can still reduce it with further changes.
@@ -1617,13 +1552,6 @@ less cts.tcl
 <details>
 <summary>Timing analysis with real clocks using openSTA</summary><blockquote>
 
-<details>
-<summary>Setup timing analysis using real clocks </summary>
-</details>
-
-<details>
-<summary>Hold timing analysis using real clocks</summary>
-</details>
 
 <details>
 <summary>Lab steps to analyze timing with real clocks using OpenSTA</summary>
@@ -1651,7 +1579,6 @@ read_verilog /openLANE_flow/designs/picorv32a/runs/19-09_21-30/results/synthesis
 read_liberty -max $::env(LIB_SLOWEST)
 read_liberty -min $::env(LIB_FASTEST)
 ```
-</details>
 
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b9dd52fd-5bee-41b8-bb0c-30ccd5820351)
 
@@ -1663,6 +1590,8 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 ```
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/dcbaaa2f-9878-4ada-8342-4107a99e8313)
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b72c56f2-1f09-42ee-bc28-534fdf48a875)
+
+</details>
 
 <details>
 <summary>Lab steps to execute OpenSTA with right timing libraries and CTS assignment</summary>
@@ -1713,23 +1642,6 @@ report_clock_skew -setup
 ## Day 5 - Final steps for RTL2GDS using tritonRoute and openSTA
 
 <details>
-<summary>Routing and design rule check (DRC)</summary><blockquote>
-
-<details>
-<summaryIntroduction to Maze Routing Â LeeÂs algorithm</summary>
-</details>
-
-<details>
-<summary>LeeÂs Algorithm conclusion </summary>
-</details>
-
-<details>
-<summary>Design Rule Check </summary>
-
-</blockquote>
-</details>
-
-<details>
 <summary>Power Distribution Network and routing</summary><blockquote>
 
 <details>
@@ -1776,25 +1688,42 @@ run_routing
 <summary>TritonRoute Features</summary><blockquote>
 
 <details>
-<summary>TritonRoute feature 1 - Honors pre-processed route guides</summary>
-</details>
-
-<details>
-<summary>TritonRoute Feature2 & 3 - Inter-guide connectivity and intra- & inter-layer routing</summary>
-</details>
-
-<details>
-<summary>TritonRoute method to handle connectivity</summary>
-</details>
-
-<details>
 <summary>Routing topology algorithm and final files list post-route</summary>
 
 + This is the routing topology algorithm
 
 ![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/6c2b7ef7-fc2d-44d7-abdc-bd454b6d6e16)
 
++ First optimisation
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/7459974e-297d-48a8-ab72-5639258b590b)
+
++ Second optimisation
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/73c84362-a80f-4837-a55d-3d861306f1b8)
+
++ Third optimisation
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b74aeae4-c42b-46cd-9bb6-85e59bb77baa)
+
++ Fourth optimisation
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/b8027f5b-f380-447e-b1a4-eb5795488009)
+
++ Fifth optimisation
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/90f643b9-696b-4c9d-a126-e127b2a0c701)
+
++ Sixth optimisation
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/4b7678cf-142a-4cf9-a8f4-c537bd7ca5cd)
+
++ Seventh optimisation
+
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/c034402d-0152-44c6-87a7-48b9fe4fd73e)
+
 + 
+![image](https://github.com/Vishnu1426/pes_pd/assets/79538653/fe9626ca-be49-4a00-b5ca-341b4b56d92f)
+
 </details>
 
 <blockquote>
